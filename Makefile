@@ -1,8 +1,9 @@
 CXXFLAGS= -O2 -Wall -fmessage-length=0 -Ilibmicrohttpd/src/include -Ilibmicrohttpd
 
-LIBS=  -lsqlite3 libmicrohttpd/src/daemon/.libs/libmicrohttpd.a
 
-OBJS= main.o
+LIBS=  -lsqlite3 libmicrohttpd/src/daemon/.libs/libmicrohttpd.a -lgcrypt -lpthread
+
+OBJS= main.o request.o
 
 TARGET= robot_scout
 

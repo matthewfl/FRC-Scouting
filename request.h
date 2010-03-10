@@ -11,10 +11,12 @@ class Request {
   public:
     Handle(std::string);
     std::string run();
-    void process ()=0;
+    virtual void process () {}
+    void write(std::string);
   };
   Request ();
-  addMap (std::string, Handle);
+  bool addMap (std::string, Request::Handle);
+  std::string handle(std::string, std::string, std::string);
  private:
   std::map<std::string, Handle> routes;
 };

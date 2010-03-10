@@ -3,10 +3,28 @@
 
 using namespace std;
 
-Request::Handle::Handle () {
+
+string Request::Handle::run () {
+  return "";
+}
+
+void Request::Handle::write(string text) {
   
 }
 
-string Request::Handle::run () {
+Request::Handle::Handle (string in) {
   
+}
+
+string Request::handle (string method, string url, string post_data) {
+  return url;
+}
+
+
+bool Request::addMap(string path, Handle handle) {
+  
+  return false;
+}
+
+Request::Request () {
 }
