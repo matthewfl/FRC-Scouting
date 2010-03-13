@@ -17,7 +17,7 @@ Request::Handle::Handle (string in) {
 }
 
 string Request::handle (string method, string url, string post_data) {
-  return url;
+  return method;
 }
 
 

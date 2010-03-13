@@ -1,0 +1,8 @@
+This is the scouting program for the FRC year of 2010
+Made by Matthew Francis-Landau (matthew@matthewfl.com)
+Team: 687 Nerd Herd
+
+How to build:
+	build libmicrohttpd first
+	then run make
+
