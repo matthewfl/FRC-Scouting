@@ -3,6 +3,11 @@ Made by Matthew Francis-Landau (matthew@matthewfl.com)
 Team: 687 Nerd Herd
 
 How to build:
-	build libmicrohttpd first
-	then run make
-
+	cd libmicrohttpd
+	./configure
+	make
+	cd ..
+	cd web_page
+	./build.sh > code.js
+	cd ..
+	make
