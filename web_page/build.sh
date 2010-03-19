@@ -1,8 +1,8 @@
-echo "/*
-Matthew Francis-Landau
-matthew@matthewfl.com
-Team 687 Nerd Herd
-*/"
+ecppc jquery.js
+ecppc style.css
 
-cat jquery.js
-cat my_code.js
+cat jquery.cpp | grep "* rawData" > jquery_.cpp
+cat style.cpp | grep "* rawData" > style_.cpp
+
+rm jquery.cpp
+rm style.cpp
