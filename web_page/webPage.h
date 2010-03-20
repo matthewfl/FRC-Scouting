@@ -5,13 +5,13 @@
 
 
 
-static const char * WebHomePage = 
-#include "index.html"
-  ;
+#define rawData WebHomePage 
+#include "index_.cpp"
+#undef rawData
 
-static const char * WebJSCodeMy = 
-#include "my_code.js"
-  ;
+#define rawData WebJSCodeMy 
+#include "my_code_.cpp"
+#undef rawData
 
 #define rawData WebJsCodeJquery
 #include "jquery_.cpp"

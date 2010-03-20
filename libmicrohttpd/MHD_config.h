@@ -146,7 +146,7 @@
 #define LIBCURL_PROTOCOL_DICT 1
 
 /* Defined if libcurl supports FILE */
-/* #undef LIBCURL_PROTOCOL_FILE */
+#define LIBCURL_PROTOCOL_FILE 1
 
 /* Defined if libcurl supports FTP */
 #define LIBCURL_PROTOCOL_FTP 1
@@ -249,7 +249,7 @@
 /* #undef WINDOWS */
 
 /* Number of bits in a file offset, on hosts where this is settable. */
-/* #undef _FILE_OFFSET_BITS */
+#define _FILE_OFFSET_BITS 64
 
 /* Define to 1 to make fseeko visible on some hosts (e.g. glibc 2.2). */
 /* #undef _LARGEFILE_SOURCE */
