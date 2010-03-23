@@ -10,11 +10,11 @@ class Request {
  public:
   class Connection_wrap {
   private:
-    MDH_Connection * connection;
+    struct MHD_Connection * connection;
     std::string _method;
   public:
     //Connection_wrap (MDH_Connection*, std::string&);
-    Connection_wrap (MDH_Connection*, std::string&);
+    Connection_wrap (struct MHD_Connection*, std::string&);
     Connection_wrap (Connection_wrap&);
     Connection_wrap ();
     std::string method();
@@ -31,8 +31,9 @@ class Request {
     virtual void process () {}
     void write(std::string);
   };
+  std::map<std::string, char*> static_pages;
   Request ();
-  std::string handle(std::string, std::string, std::string, MHD_Connection*);
+  std::string handle(std::string, std::string, std::string, MHD_Connection*, char**);
  private:
   std::map<std::string, Handle> routes;
 };

@@ -33,10 +33,11 @@ static int Handle_Page (void *cls,
     return MHD_YES;
   }
   *ptr = NULL;
-  
-  string res = pass->request->handle(method, url, string(upload_data, *upload_data_size), connection);
+  char * rType;
+  string res = pass->request->handle(method, url, string(upload_data, *upload_data_size), connection, &rType);
   
   response = MHD_create_response_from_data((size_t)strlen(res.c_str()), (void*) res.c_str(), MHD_NO, MHD_YES);
+  MHD_add_response_header(response, "Content-Type", rType);
   ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
   MHD_destroy_response(response);
   return ret;
