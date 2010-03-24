@@ -45,8 +45,9 @@ static int Handle_Page (void *cls,
 }
 
 int main (int argc, char *argv[]) {
-  Request * request = new Request;
-  Database * db = new Database ();
+  Database * db = new Database ();  
+  Request * request = new Request(db);
+  
   Handle_Page_pass passIn {request, db};
   MHD_Daemon * httpd = MHD_start_daemon(MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG,
 		       6870, // port

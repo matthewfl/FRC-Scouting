@@ -5,6 +5,7 @@
 #include <map>
 #include "platform.h"
 #include <microhttpd.h>
+#include "database.h"
 
 class Request {
  public:
@@ -31,8 +32,9 @@ class Request {
     virtual void process () {}
     void write(std::string);
   };
+  Database * db;
   std::map<std::string, char*> static_pages;
-  Request ();
+  Request (Database*);
   std::string handle(std::string, std::string, std::string, MHD_Connection*, char**);
  private:
   std::map<std::string, Handle> routes;

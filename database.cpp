@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <stdlib.h>
+
 using namespace std;
 
 
@@ -26,4 +28,17 @@ vector<vector<string> > Database::query(string q) {
     sqlite3_free(error);
   }
   return ret;
+}
+
+
+Database::Database () {
+  if(sqlite3_open("frc_data.db", &db)) {
+      cerr << "error: opening database\n";
+      sqlite3_close(db);
+      exit(1);
+    }
+  query("CREATE TABLE IF NOT EXISTS match (number INTEGER, red1 INTEGER, red2 INTEGER, red3 INTEGER, blue1 INTEGER, blue2 INTEGER, blue3 INTEGER);");
+  query("CREATE TABLE IF NOT EXISTS team (name TEXT, number INTEGER, rank INTEGER);");
+  query("CREATE TABLE IF NOT EXISTS teamMatch (team INTEGER, pos INTEGER, match INTEGER, autoAtemp INTEGER, autoMade INTEGER, telAtemp INTEGER, telMade INTEGER, hangAtemp INTEGER, hangMade INTEGER);");
+  query("CREATE TABLE IF NOT EXISTS pen (match INTEGER, team INTEGER, what TEXT);");
 }

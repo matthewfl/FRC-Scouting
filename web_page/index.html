@@ -27,17 +27,21 @@ Team 687 The Nerd Herd
       <div class="grid_9" id="contnet">
 	<div id="requireJS"><h1>You need to enable JavaScript for the Scouting program to work</h1></div>
 	<div id="welcomeAction" class="content_action">Chose an Mode from the list on the left</div>
+	<div id="enterList" class="content_action">
+	  <textarea rows="15" cols="80" id="enterMatches"></textarea><br>
+	  <button id="enterSave">Save</button>
+	</div>
 	<div id="matchScouting" class="content_action">
 	  <div class="grid_9 alpha omega">
 	    <!-- top drop down for match scoring -->
-	    Match: <select id="matchNum"></select>
+	    Match: <input id="matchNum" class="sni"/>
 	    Team: <select id="matchTeam">
-	      <option value="red1" style="color: #FF0000;">red1</option>
-	      <option value="red2" style="color: #FF0000;">red2</option>
-	      <option value="red3" style="color: #FF0000;">red3</option>
-	      <option value="blue1" style="color: #0000FF;">blue1</option>
-	      <option value="blue2" style="color: #0000FF;">blue2</option>
-	      <option value="blue3" style="color: #0000FF;">blue3</option>
+	      <option value="red1" style="color: #FF0000;" id="red1">red1</option>
+	      <option value="red2" style="color: #FF0000;" id="red2">red2</option>
+	      <option value="red3" style="color: #FF0000;" id="red3">red3</option>
+	      <option value="blue1" style="color: #0000FF;" id="blue1">blue1</option>
+	      <option value="blue2" style="color: #0000FF;" id="blue2">blue2</option>
+	      <option value="blue3" style="color: #0000FF;" id="blue3">blue3</option>
 	    </select>
 	  </div>
 	  <div class="clear"> </div>
@@ -46,14 +50,21 @@ Team 687 The Nerd Herd
 	  <div class="grid_4 alpha">
 	    Attempted: <input id="matchAutoScoreAtmp" value="0" class="sni"/><br>
 	    Made: <input id="matchAutoScoreMade" value="0" class="sni"/><br>
-	    Penalties: <ul id="matchPenalities">
-	      <li><input id="matchPenalities0" /><li>
-	    </ul>
 	  </div>
 	  <div class="grid_4 push_1 omega">
+	    Attempted: <input id="matchTelScoreAtmp" value="0" class="sni" /><br>
+	    Made: <input id="matchTelScoreMade" value="0" class="sni" /><br>
+	    Hang Attempted: <input id="matchTelHangAtmp" value="0" class="sni" /><br>
+	    Hang Completed: <input type="checkbox" id="matchTelHangMade" /><br>
 	  </div>
 	  <div class="clear"> </div>
-	  <center><button id="Save">Save</button></center>
+	  <div class="grid_9 alpha omega">
+	    Penalties: <ul id="matchPenalities">
+	      <li><input class="Penal"/><li>
+	    </ul>
+	    <button id="matchAddPenalities">+</button>
+	  </div>
+	  <center><button id="matchSave">Save</button></center>
 	</div>
       </div>
       <div class="clear"> </div>

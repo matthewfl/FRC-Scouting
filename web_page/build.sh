@@ -1,3 +1,4 @@
+echo "web page build"
 
 if [ ! -e load ]
 then

@@ -4,13 +4,14 @@
 #include <vector>
 
 #include <iostream>
-
-
-
+#include <boost/algorithm/string.hpp>
+#include <stdlib.h>
+#include <sstream>
 
 
 using namespace std;
 
+#include "database.h"
 
 
 string Request::Handle::run () {
@@ -75,8 +76,14 @@ string Request::handle (string method, string url, string post_data, MHD_Connect
     *rType = "text/plain";
     style_page page(con, this);
     return page.run();
+  }else if(url == "/enterMatch") {
+    enterMatch_page page(con, this);
+    return page.run();
+  }else if(url=="/matchInfo") {
+    matchInfo_page page(con, this);
+    return page.run();
   }
-
+  
   // else
   Debug_page page(con, this);
   return page.run();
@@ -89,7 +96,7 @@ namespace {
 
 
 
-Request::Request () {
+Request::Request (Database * _db) : db(_db) {
 
   // set up static pages
   static_pages["home"] = WebHomePage;

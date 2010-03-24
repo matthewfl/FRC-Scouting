@@ -10,6 +10,7 @@ class Database {
   sqlite3 * db;
  public:
   std::vector<std::vector<std::string> > query(std::string);
+  Database ();
 };
 
 #endif
