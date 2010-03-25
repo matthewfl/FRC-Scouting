@@ -82,6 +82,9 @@ string Request::handle (string method, string url, string post_data, MHD_Connect
   }else if(url=="/matchInfo") {
     matchInfo_page page(con, this);
     return page.run();
+  }else if(url == "/matchTeamInfo") {
+    matchTeamInfo_page page(con, this);
+    return page.run();
   }
   
   // else

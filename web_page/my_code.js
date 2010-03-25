@@ -43,14 +43,55 @@ $(function () {
 		    }
 		});
 	}
-	function match_team(team) {
-	    
+	function match_team(pos, match, team) {
+	    $.ajax({
+		    url: "/matchTeamInfo?match="+match+"&pos="+pos+"&team="+team,
+			success: function (data) {
+			var info = data.split("\n");
+			var nums = info[0].split(" ");
+			$("#matchAutoScoreAtmp").val(nums[0]);
+			$("#matchAutoScoreMade").val(nums[1]);
+			$("#matchTelScoreAtmp").val(nums[2]);
+			$("#matchTelScoreMade").val(nums[3]);
+			$("#matchTelHangAtmp").val(nums[4]);
+			$("#matchTelHangMade").attr("checked", nums[5]);
+			
+			var pen = info[1].split("\\n");
+			var penArea = $("#matchPenalities").empty();
+			for(var i =0; i < pen.length; i++)
+			    penArea.append('<li><input class="Penal" value="'+pen[i].replace(/\"/g, "\\\"")+'"/><li>');
+			$("#matchNotes").val(info[2]);
+		    }
 	}
 	$("#matchSave").click(function () {
 		
 	    });
 	$("#matchNum").change(function () {
 		match($(this).val()*1);
+	    });
+	$("#matchTeam").change(function () {
+		var pos;
+		switch($(this).val()) {
+		case 'red1':
+		    pos=1;
+		    break;
+		case 'red2':
+		    pos=2;
+		    break;
+		case 'red3':
+		    pos=3;
+		    break;
+		case 'blue1':
+		    pos=4;
+		    break;
+		case 'blue2':
+		    pos=5;
+		    break;
+		case 'blue3':
+		    pos=6;
+		    break;
+		}
+		match_team(pos, $("#matchNum").val()*1, $(this).html());
 	    });
 	$("#enterSave").click(function () {
 		var data = $("#enterMatches").val().split("\n");
