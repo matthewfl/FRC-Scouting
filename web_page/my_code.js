@@ -42,6 +42,12 @@ $(function () {
 			$("#blue3").html(teams[5]);
 		    }
 		});
+	    $("#matchAutoScoreAtmp").val(0);
+	    $("#matchAutoScoreMade").val(0);
+	    $("#matchTelScoreAtmp").val(0);
+	    $("#matchTelScoreMade").val(0);
+	    $("#matchTelHangAtmp").val(0);
+	    $("#matchTelHangMade").attr("checked", false);
 	}
 	function match_team(pos, match, team) {
 	    $.ajax({
@@ -54,17 +60,41 @@ $(function () {
 			$("#matchTelScoreAtmp").val(nums[2]);
 			$("#matchTelScoreMade").val(nums[3]);
 			$("#matchTelHangAtmp").val(nums[4]);
-			$("#matchTelHangMade").attr("checked", nums[5]);
-			
+			$("#matchTelHangMade").attr("checked", nums[5] != '0');
+			$("#matchAutoStart").val(num[6]);
 			var pen = info[1].split("\\n");
 			var penArea = $("#matchPenalities").empty();
 			for(var i =0; i < pen.length; i++)
 			    penArea.append('<li><input class="Penal" value="'+pen[i].replace(/\"/g, "\\\"")+'"/><li>');
 			$("#matchNotes").val(info[2]);
 		    }
+		});
 	}
 	$("#matchSave").click(function () {
-		
+		$.ajax({
+			url: "/matchTeamSave?match="+$("#matchNum").val()+"&team="+$("#"+$("#matchTeam").val()).html()+"&pos="+(function () {
+				switch($("#matchTeam").val()) {
+				case 'red1':
+				    return 1;
+				case 'red2':
+				    return 2;
+				case 'red3':
+				    return 3;
+				case 'blue1':
+				    return 4;
+				case 'blue2':
+				    return 5;
+				case 'blue3':
+				    return 6;
+				}
+			    })()+"&autoAtemp="+$("#matchAutoScoreAtmp").val()
+			    +"&autoMade="+$("#matchAutoScoreMade").val()
+			    +"&autoStart="+$("#matchAutoStart").val()
+			    +"&telAtemp="+$("#matchTelScoreAtmp").val()
+			    +"&telMade="+$("#matchTelScoreMade").val()
+			    +"&hangAtemp="+$("#matchTelHangAtmp").val()
+			    +"&hangMade="+$("#matchTelHangMade").val()
+		    });
 	    });
 	$("#matchNum").change(function () {
 		match($(this).val()*1);
@@ -91,7 +121,7 @@ $(function () {
 		    pos=6;
 		    break;
 		}
-		match_team(pos, $("#matchNum").val()*1, $(this).html());
+		match_team(pos, $("#matchNum").val()*1, $("#"+$(this).val()).html());
 	    });
 	$("#enterSave").click(function () {
 		var data = $("#enterMatches").val().split("\n");

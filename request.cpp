@@ -80,11 +80,15 @@ string Request::handle (string method, string url, string post_data, MHD_Connect
     enterMatch_page page(con, this);
     return page.run();
   }else if(url=="/matchInfo") {
+    *rType = "text/plain";
     matchInfo_page page(con, this);
     return page.run();
   }else if(url == "/matchTeamInfo") {
+    *rType = "text/plain";
     matchTeamInfo_page page(con, this);
     return page.run();
+  }else if(url == "/matchTeamSave") {
+    
   }
   
   // else
