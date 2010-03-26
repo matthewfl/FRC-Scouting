@@ -23,10 +23,30 @@ $(function () {
 		return;
 	    case "scoreMatch": // scoring the match
 		$("#matchScouting").show();
+		$("#matchNum").change();
+		return;
+	    case "teamList":
+		$("#teamInfo").show();
+		loadTeamList();
 		return;
 	    }
 	}
 	
+	function loadTeamList () {
+	    $.ajax({
+		    url: "/listTeamNum",
+			success: function (raw) {
+			var list = raw.split("\n"), b=$("#teamsList").empty();
+			for(var i =0; i<list.length; i++) {
+			    b.append("<option value=\""+list[i]+"\">"+list[i]+"</option>");
+			}
+		    }
+		});
+	}
+	$("#teamsList").change(function () {
+		$("#teamInfoArea").load("/TeamInfo?num="+$(this).val());
+	    });
+
 	mode_change.apply($("#mode")); // I think there is something in the jquery api that will do this
 	$("#mode").change(mode_change);
 	function match (number) {
@@ -48,6 +68,7 @@ $(function () {
 	    $("#matchTelScoreMade").val(0);
 	    $("#matchTelHangAtmp").val(0);
 	    $("#matchTelHangMade").attr("checked", false);
+	    $("#matchTeam").change();
 	}
 	function match_team(pos, match, team) {
 	    $.ajax({
@@ -65,7 +86,8 @@ $(function () {
 			var pen = info[1].split("\\n");
 			var penArea = $("#matchPenalities").empty();
 			for(var i =0; i < pen.length; i++)
-			    penArea.append('<li><input class="Penal" value="'+pen[i].replace(/\"/g, "\\\"")+'"/><li>');
+			    if(pen[i])
+				penArea.append('<li><input class="Penal" value="'+pen[i].replace(/\"/g, "\\\"")+'"/><li>');
 			$("#matchNotes").val(info[2]);
 		    }
 		});
@@ -93,7 +115,15 @@ $(function () {
 			    +"&telAtemp="+$("#matchTelScoreAtmp").val()
 			    +"&telMade="+$("#matchTelScoreMade").val()
 			    +"&hangAtemp="+$("#matchTelHangAtmp").val()
-			    +"&hangMade="+$("#matchTelHangMade").val()
+			    +"&hangMade="+($("#matchTelHangMade").attr("checked") ? "1" : "0")
+			    +"&notes="+$("#matchNotes").val()
+			    +"&pen="+(function () {
+				    var ret = "";
+				    $(".Penal").each(function () {
+					    ret += $(this).val() + "\n";
+					});
+				    return ret.replace(/\n/g, "\\n");
+				})()
 		    });
 	    });
 	$("#matchNum").change(function () {

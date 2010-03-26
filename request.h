@@ -31,6 +31,7 @@ class Request {
     std::string run();
     virtual void process () {}
     void write(std::string);
+    //  void write(const char*);
   };
   Database * db;
   std::map<std::string, char*> static_pages;

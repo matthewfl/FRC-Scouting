@@ -22,6 +22,10 @@ string Request::Handle::run () {
 void Request::Handle::write(string text) {
   _print += text;
 }
+/*
+void Request::Handle::write(const char * text) {
+  _print += text;
+  }*/
 
 //Request::Handle::Handle (Request::Connection_wrap w) : connection(w)  {}
 Request::Handle::Handle () {}
@@ -88,7 +92,14 @@ string Request::handle (string method, string url, string post_data, MHD_Connect
     matchTeamInfo_page page(con, this);
     return page.run();
   }else if(url == "/matchTeamSave") {
-    
+    matchTeamSave_page page(con, this);
+    return page.run();
+  }else if(url == "/listTeamNum") {
+    listTeamNum_page page(con, this);
+    return page.run();
+  }else if(url == "/TeamInfo") {
+    TeamInfo_page page(con, this);
+    return page.run();
   }
   
   // else

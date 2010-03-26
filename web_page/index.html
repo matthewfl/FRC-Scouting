@@ -21,12 +21,18 @@ Team 687 The Nerd Herd
 	Mode: <select id="mode">
 	  <option value="chose">Chose a Mode</option>
 	  <option value="scoreMatch">Scoring Match</option>
+	  <option value="teamList">Team Info</option>
 	  <option value="enterList">Enter Match list</option>
 	</select>
       </div>
       <div class="grid_9" id="contnet">
 	<div id="requireJS"><h1>You need to enable JavaScript for the Scouting program to work</h1></div>
 	<div id="welcomeAction" class="content_action">Chose an Mode from the list on the left</div>
+	<div id="teamInfo" class="content_action">
+	  Teams: <select id="teamsList">
+	    </select><br>
+	  <div id="teamInfoArea" class="grid_9 alpha omega" > </div>
+	</div>
 	<div id="enterList" class="content_action">
 	  <textarea rows="15" cols="80" id="enterMatches"></textarea><br>
 	  <button id="enterSave">Save</button>
@@ -51,7 +57,7 @@ Team 687 The Nerd Herd
 	    Attempted: <input id="matchAutoScoreAtmp" value="0" class="sni"/><br>
 	    Made: <input id="matchAutoScoreMade" value="0" class="sni"/><br>
 	    Start Location: <select id="matchAutoStart">
-	      <option value="1">Neer</option>
+	      <option value="1">Near</option>
 	      <option value="2">Middle</option>
 	      <option value="3">Far</option>
 	    </select><br>

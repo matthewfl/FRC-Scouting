@@ -38,6 +38,6 @@ Database::Database () {
       exit(1);
     }
   query("CREATE TABLE IF NOT EXISTS match (number INTEGER, red1 INTEGER, red2 INTEGER, red3 INTEGER, blue1 INTEGER, blue2 INTEGER, blue3 INTEGER);");
-  query("CREATE TABLE IF NOT EXISTS team (name TEXT, number INTEGER, rank INTEGER);");
+  query("CREATE TABLE IF NOT EXISTS team (name TEXT, number INTEGER, rank INTEGER, notes TEXT);");
   query("CREATE TABLE IF NOT EXISTS teamMatch (team INTEGER, pos INTEGER, match INTEGER, autoAtemp INTEGER, autoMade INTEGER, telAtemp INTEGER, telMade INTEGER, hangAtemp INTEGER, hangMade INTEGER, pen TEXT, notes TEXT, startLoc INTEGER);");
 }
